@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        Protend - Project Management Admin Dashboard HTML Template
+        Politeknik negeri jember - ID3
     </title>
     <link rel="shortcut icon" href="./images/favicon.png" type="image/png">
     <!-- GOOGLE FONT -->
@@ -27,11 +27,24 @@
 
 <body class="sidebar-expand">
 
+    <?php
+    session_start();
+   
+    // cek apakah yang mengakses halaman ini sudah login
+    if($_SESSION['level']==""){
+     header("location:index.php?pesan=gagal");
+    }
+   
+    ?>
+
+<p>Halo <b><?php echo $_SESSION['username']; ?></b> Anda telah login sebagai <b><?php echo $_SESSION['level']; ?></b>.</p>
+ <a href="logout.php">LOGOUT</a>
     <!-- SIDEBAR -->
     <div class="sidebar">
         <div class="sidebar-logo">
-            <a href="index.html">
-                <img src="./images/logo.png" alt="Protend logo">
+            <a href="halaman_dosen.php">
+                <img src="./images/logo.png" alt="ID3">
+                Desicition tree-ID3
             </a>
             <div class="sidebar-close" id="sidebar-close">
                 <i class='bx bx-left-arrow-alt'></i>
@@ -49,24 +62,14 @@
                         </div>
                     </a>
                     <ul class="sidebar-menu sidebar-menu-dropdown-content">
-                        <li>
-                            <a href="index.html">
-                                Dashboard
+                    <li>
+                            <a href="penilaian.php">
+                                Input data
                             </a>
                         </li>
                         <li>
-                            <a href="user-profile.html">
-                                User Profile
-                            </a>
-                        </li>
-                        <li>
-                            <a href="user-login.html">
-                                User Login
-                            </a>
-                        </li>
-                        <li>
-                            <a href="new-account.html">
-                               New Account
+                            <a href="cek_status.php">
+                                Cek status
                             </a>
                         </li>
                     </ul>
@@ -74,82 +77,28 @@
                 <li class="sidebar-submenu">
                     <a href="project.html" class="sidebar-menu-dropdown">
                         <i class='bx bxs-bolt'></i>
-                        <span>Project</span>
+                        <span>Settings</span>
                         <div class="dropdown-icon"><i class='bx bx-chevron-down'></i></div>
                     </a>
                     <ul class="sidebar-menu sidebar-menu-dropdown-content">
+                    <li>
+                            <a href="profile.php">
+                                profile
+                            </a>
+
+                        </li>
                         <li>
-                            <a href="project.html">
-                               Project
+                            <a href="register.php">
+                                Register user
                             </a>
                         </li>
                         <li>
-                            <a href="project-details.html">
-                                Project Details
-                            </a>
-                        </li>
-                        <li>
-                            <a href="new-project.html">
-                                New Project
+                            <a href="Logout.php">
+                                Logout
                             </a>
                         </li>
                     </ul>
-                </li>
-
-                <li class="sidebar-submenu">
-                    <a href="clients.html" class="sidebar-menu-dropdown">
-                        <i class='bx bxs-user'></i>
-                        <span>Client</span>
-                        <div class="dropdown-icon"><i class='bx bx-chevron-down'></i></div>
-                    </a>
-                    <ul class="sidebar-menu sidebar-menu-dropdown-content">
-                        <li>
-                            <a href="clients.html">
-                               Manager Client
-                            </a>
-                        </li>
-                        <li>
-                            <a href="client-details.html">
-                                Client Details
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="board.html">
-                        <i class='bx bxs-dashboard'></i>
-                        <span>Board</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="calendar.html">
-                        <i class='bx bx-calendar'></i>
-                        <span>Calendar</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="message.html">
-                        <i class='bx bxs-message-rounded-detail' ></i>
-                        <span>Message</span>
-                    </a>
-                </li>
-                <li class="sidebar-submenu">
-                    <a href="chart-apex.html" class="sidebar-menu-dropdown">
-                        <i class='bx bxs-component' ></i>
-                        <span>Components</span>
-                        <div class="dropdown-icon"><i class='bx bx-chevron-down'></i></div>
-                    </a>
-                    <ul class="sidebar-menu sidebar-menu-dropdown-content">
-                        <li>
-                            <a href="chart-apex.html">
-                                Apex Charts
-                            </a>
-                        </li>
-
-                    </ul>
-                </li>
-                <li>
+                            
                     <a class="darkmode-toggle" id="darkmode-toggle" onclick="switchTheme()">
                         <div>
                             <i class='bx bx-cog mr-10'></i>

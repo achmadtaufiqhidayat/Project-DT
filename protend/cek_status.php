@@ -1,3 +1,8 @@
+<?php
+// mengaktifkan session php
+session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,6 +19,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <!-- BOXICONS -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="css/icons.min.css">
 
     <!-- APP CSS -->
     <link rel="stylesheet" href="./css/bootstrap.min.css">
@@ -27,8 +33,9 @@
     <!-- SIDEBAR -->
     <div class="sidebar">
         <div class="sidebar-logo">
-                        <a href="index.html">
+            <a href="index.html">
                 <img src="./images/logo.png" alt="Protend logo">
+                <a>Desition tree - ID3</a>
             </a>
             <div class="sidebar-close" id="sidebar-close">
                 <i class='bx bx-left-arrow-alt'></i>
@@ -46,106 +53,42 @@
                         </div>
                     </a>
                     <ul class="sidebar-menu sidebar-menu-dropdown-content">
-                        <li>
-                            <a href="index.html">
-                                Dashboard
+                             
+                    <li>
+                            <a href="input_nilai.php">
+                                Input data
                             </a>
                         </li>
                         <li>
-                            <a href="user-profile.html">
-                                User Profile
+                            <a href="cek_status.php">
+                                Cek status
                             </a>
                         </li>
-<li>
-                            <a href="user-login.html">
-                                User Login
-                            </a>
-                        </li>
-                        <li>
-                            <a href="new-account.html">
-                               New Account
-                            </a>
                         </li>
                     </ul>
                 </li>
                 <li class="sidebar-submenu">
-                    <a href="project.html" class="sidebar-menu-dropdown">
+                    <a href="project.html" class="sidebar-menu-dropdown current-menu-item">
                         <i class='bx bxs-bolt'></i>
-                        <span>Project</span>
-                        <div class="dropdown-icon"><i class='bx bx-chevron-down'></i></div>
-                    </a>
-                    <ul class="sidebar-menu sidebar-menu-dropdown-content">
-                        <li>
-                            <a href="project.html">
-                               Project
-                            </a>
-                        </li>
-                        <li>
-                            <a href="project-details.html">
-                                Project Details
-                            </a>
-                        </li>
-                        <li>
-                            <a href="new-project.html">
-                                New Project
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="sidebar-submenu">
-                    <a href="clients.html" class="sidebar-menu-dropdown">
-                        <i class='bx bxs-user'></i>
-                        <span>Client</span>
-                        <div class="dropdown-icon"><i class='bx bx-chevron-down'></i></div>
-                    </a>
-                    <ul class="sidebar-menu sidebar-menu-dropdown-content">
-                                                <li>
-                            <a href="clients.html">
-                               Manager Client
-                            </a>
-                        </li>
-                        <li>
-                            <a href="client-details.html">
-                                Client Details
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="board.html">
-                        <i class='bx bxs-dashboard'></i>
-                        <span>Board</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="calendar.html">
-                        <i class='bx bx-calendar'></i>
-                        <span>Calendar</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="message.html">
-                        <i class='bx bxs-message-rounded-detail' ></i>
-                        <span>Message</span>
-                    </a>
-                </li>
-                <li class="sidebar-submenu">
-                    <a href="#" class="sidebar-menu-dropdown current-menu-item">
-                        <i class='bx bxs-component' ></i>
-                        <span>Components</span>
+                        <span>Setting</span>
                         <div class="dropdown-icon"><i class='bx bx-chevron-down'></i></div>
                     </a>
                     <ul class="sidebar-menu sidebar-menu-dropdown-content active">
+                    <li>
+                            <a href="profile.php">
+                                profile
+                            </a>
+
+                        </li>
+                      
                         <li>
-                            <a href="chart-apex.html">
-                                Apex Charts
+                            <a href="Logout.php">
+                                Logout
                             </a>
                         </li>
-
                     </ul>
                 </li>
+
                 <li>
                     <a class="darkmode-toggle" id="darkmode-toggle" onclick="switchTheme()">
                         <div>
@@ -162,14 +105,14 @@
     </div>
     <!-- END SIDEBAR -->
 
-        <!-- Main Header -->
+    <!-- Main Header -->
     <div class="main-header">
         <div class="d-flex">
             <div class="mobile-toggle" id="mobile-toggle">
                 <i class='bx bx-menu'></i>
             </div>
             <div class="main-title">
-                Apex Charts
+            
             </div>
         </div>
 
@@ -246,8 +189,8 @@
                             alt="Header Avatar">
                         <span class="pulse-css"></span>
                         <span class="info d-xl-inline-block  color-span">
-                            <span class="d-block fs-20 font-w600">Randy Riley</span>
-                            <span class="d-block mt-7" >randy.riley@gmail.com</span>
+                        <span class="d-block fs-20 font-w600"><b><?php echo $_SESSION['username']; ?><??></b></span>
+                         
                         </span>
                             
                         <i class='bx bx-chevron-down'></i>
@@ -268,60 +211,68 @@
 
     <!-- MAIN CONTENT -->
     <div class="main">
+<h1>Tegar karunia ilham</h1>
+    <div class="card">
+            <div class="card-title mb-0 fs-22">
+                Data  Nilai
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">logika algoritma</th>
+                            <th scope="col">matematika Diskrit</th>
+                            <th scope="col">wokshop tertanam</th>
+                            <th scope="col">wk_pcv</th>
+                            <th scope="col">sistem_cerdas</th>
+                            <th scope="col">wk_cerdas</th>
+                            <th scope="col">file</th>
+                            <th scope="col">status</th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        include 'koneksi.php';
+                        $sql2   = "select * from mata_kuliah order by id_matkul desc";
+                        $q2     = mysqli_query($koneksi, $sql2);
+                        $urut   = 1;
+                        while ($r2 = mysqli_fetch_array($q2)) {
+                            $id_matkul         = $r2['id_matkul'];
+                            $logika_algoritma        = $r2['logika_algoritma'];
+                            $matematika_Diskrit       = $r2['matematika_Diskrit'];
+                            $wk_sistemtertanam     = $r2['wk_sistemtertanam'];
+                            $wk_pcv   = $r2['wk_pcv'];
+                            $sistem_cerdas     = $r2['sistem_cerdas'];
+                            $wk_sistem_cerdas  = $r2['wk_sistem_cerdas'];
+                            $file     = $r2['file'];
+                         
 
-        <div class="main-content">
-            <div class="row">
-                <div class="col-6 col-md-6 col-sm-12">
-                    <div class="box left-dot h-100">
-                        <div class="box-title">Line Charts</div>
-                        <div class="box-body">
-                            <div id="line-chart"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-6 col-sm-12">
-                    <div class="box left-dot h-100">
-                        <div class="box-title">Area Charts</div>
-                        <div class="box-body">
-                            <div id="area-chart"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-6 col-sm-12">
-                    <div class="box left-dot h-100">
-                        <div class="box-title">Column Charts</div>
-                        <div class="box-body">
-                            <div id="column-chart"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-6 col-sm-12">
-                    <div class="box left-dot h-100">
-                        <div class="box-title">Pie Charts</div>
-                        <div class="box-body">
-                            <div id="pie-chart"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-6 col-sm-12">
-                    <div class="box left-dot h-100">
-                        <div class="box-title">PolarArea Charts</div>
-                        <div class="box-body">
-                            <div id="polar-chart"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-6 col-sm-12">
-                    <div class="box left-dot h-100">
-                        <div class="box-title">Radar Charts</div>
-                        <div class="box-body">
-                            <div id="radar-chart"></div>
-                        </div>
-                    </div>
-                </div>
+                        ?>
+                            <tr>
+                                <th scope="row"><?php echo $urut++ ?></th>
+                                <td scope="row"><?php echo $logika_algoritma ?></td>
+                                <td scope="row"><?php echo $matematika_Diskrit ?></td>
+                                <td scope="row"><?php echo $wk_sistemtertanam ?></td>
+                                <td scope="row"><?php echo $wk_pcv ?></td>
+                                <td scope="row"><?php echo $sistem_cerdas ?></td>
+                                <td scope="row"><?php echo $wk_sistem_cerdas ?></td>
+                                <td scope="row"><?php echo $file ?></td>
+                                <td scope="row">Diterima</td>
+                              
+                    
+                            </tr>
+                        <?php
+                        }
+                        ?>
+                    </tbody>
+                    
+                </table>
             </div>
         </div>
     </div>
+          
     <!-- END MAIN CONTENT -->
 
     <div class="overlay"></div>
@@ -330,20 +281,20 @@
     <!-- APEX CHART -->
 
     <script src="./libs/jquery/jquery.min.js"></script>
+    <script src="./libs/jquery/jquery-ui.min.js"></script>
     <script src="./libs/moment/min/moment.min.js"></script>
+    <script src="./libs/apexcharts/apexcharts.js"></script>
     <script src="./libs/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="./libs/peity/jquery.peity.min.js"></script>
     <script src="./libs/chart.js/Chart.bundle.min.js"></script>
     <script src="./libs/owl.carousel/owl.carousel.min.js"></script>
     <script src="./libs/bootstrap/js/bootstrap.min.js"></script>
-    <script src="./libs/apexcharts/apexcharts.js"></script>
     <script src="./libs/simplebar/simplebar.min.js"></script>
-
 
     <!-- APP JS -->
     <script src="./js/main.js"></script>
     <script src="./js/shortcode.js"></script>
-    <script src="./js/pages/apexchart.js"></script>
+    <script src="./js/script.js"></script>
 </body>
 
 </html>

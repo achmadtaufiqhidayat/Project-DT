@@ -5162,3 +5162,12 @@ body.dark .notification-list .list .no-seen {
 .custom-scroll {
     height: 100%
 }
+
+
+.alert{
+    background: #e44e4e;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border:1px solid #b32929;
+   }

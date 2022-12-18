@@ -59,8 +59,8 @@
                             </a>
                         </li>
 <li>
-                            <a href="user-login.html">
-                                User Login
+                            <a href="index.php">
+                                 Login
                             </a>
                         </li>
                         <li>
@@ -271,18 +271,25 @@
     <div class="main">
 
         <div class="main-content">
-            <section class="login singup">
+            <section class="login">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-12">
                         <div class="box">
                             <div class="box-header d-flex justify-content-between">
                                 <a href="index.html">
                                     <img src="./images/logo.png" alt="">
                                 </a>
+                                <?php
+ if(isset($_GET['pesan'])){
+  if($_GET['pesan']=="gagal"){
+   echo "<div class='alert'>Username dan Password Salah !</div>";
+  }
+ }
+ ?>
                                 
                                 <div class="action-reg">
-                                    <h4 class="fs-30">Register</h4>
-                                    <a href="new-account.html">Create new account</a>
+                                    <h4 class="fs-30">Login</h4>
+                                    <a href="new-account.html">Sign in to your account</a>
                                 </div>
     
                             </div>
@@ -290,51 +297,31 @@
                             <div class="box-body">
                                 <div class="auth-content my-auto">
     
-                                    <form class="mt-6 pt-2" action="index.html">
-                                        <div class="mb-3">
-                                            <label class="form-label mb-14">User Name</label>
-                                            <input type="text" class="form-control" id="username" placeholder="Your Name">
+                                    <form class="mt-5 pt-2" action="cek_login.php" method="post">
+                                        <div class="mb-24">
+                                            <label class="form-label mb-14">Username</label>
+                                            <input type="text" class="username" name="username" placeholder="Username" required="required">
                                         </div>
-                                        <div class="mb-3 mt-24">
-                                            <label for="useremail" class="form-label mb-14">E-Mail</label>
-                                            <input type="email" class="form-control" id="useremail" placeholder="Your Email" required>
-                                            <div class="invalid-feedback">
-                                                Please Enter Email
-                                            </div>
-                                        </div>
-                                        <div class="mb-3 mt-24">
+                                        <div class="mb-16">
                                             <div class="d-flex align-items-start">
                                                 <div class="flex-grow-1">
                                                     <label class="form-label mb-14">Password</label>
+                                                    <input type="password" name="password" class="form_login" placeholder="Password" required="required">
                                                 </div>
+                                               
                                             </div>
     
-                                            <div class="input-group auth-pass-inputgroup">
-                                                <input type="password" class="form-control" placeholder="Enter password" aria-label="Password" aria-describedby="password-addon">
-                                                <button class="btn shadow-none ms-0" type="button" id="password-addon"><i class="far fa-eye-slash"></i></button>
-                                            </div>
+                                
                                         </div>
-    
-                                        <div class="row mb-4">
-                                            <div class="col">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="remember-check">
-                                                    <label class="form-check-label" for="remember-check">
-                                                        I agree to the <a href="#" class="text-primary"> Terms of services</a> & <a href="#" class="text-primary"> Privacy policy</a>
-                                                    </label>
-                                                </div>
-                                            </div>
+                        
     
                                         </div>
-                                        <div class="mb-3 mt-29">
-                                            <button class="btn bg-primary color-white w-100 waves-effect waves-light fs-18 font-w500" type="submit">Create Account</button>
+                                        <div class="mb-3">
+                                            <button class="btn bg-primary color-white w-100 waves-effect waves-light fs-18 font-w500" type="submit">Sign in</button>
                                         </div>
                                     </form>
     
-    
-                                    <div class="mt-59 text-center">
-                                        <p class="text-muted mb-0 fs-14">Already have an account ? <a href="user-login.html" class="text-primary fw-semibold">  Sign in </a> </p>
-                                    </div>
+               
     
                                     <div class="mt-37 text-center">
     
