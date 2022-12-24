@@ -25,6 +25,7 @@ session_start();
     <link rel="stylesheet" href="./css/grid.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/responsive.css">
+    <link rel="stylesheet" href="./css/custom.css">
 </head>
 
 <body class="sidebar-expand">
@@ -52,9 +53,29 @@ session_start();
                         </div>
                     </a>
                     <ul class="sidebar-menu sidebar-menu-dropdown-content">
-                             
+                    <?php
+                        include 'koneksi.php';
+                        $username = $_SESSION['username'];
+                        $sql   = "select * from mahasiswa where username = '$username' ";
+                        $q     = mysqli_query($koneksi, $sql);
+                        while ($r = mysqli_fetch_array($q)) {
+                        $id_matkul2         = $r['id_matkul'];
+}
+                        
+                        $sql2   = "select * from mata_kuliah WHERE id_matkul = $id_matkul2";
+                        $q2     = mysqli_query($koneksi, $sql2);
+                        $rowcount=mysqli_num_rows($q2);
+                        $urut   = 1;
+                        if($rowcount > 0){ 
+                            $ada = true;
+                        }
+                            else
+                        { 
+                            $ada = false;
+                        }
+                        ?>
                     <li>
-                            <a href="input_nilai.php">
+                            <a class=<?php echo ($ada == true) ? 'disable-links' : 'clear'; ?> href="input_nilai.php">
                                 Input data
                             </a>
                         </li>
@@ -81,7 +102,7 @@ session_start();
                         </li>
                       
                         <li>
-                            <a href="Logout.php">
+                            <a href="Logout_mahasiswa.php">
                                 Logout
                             </a>
                         </li>
@@ -235,7 +256,14 @@ session_start();
                     <tbody>
                         <?php
                         include 'koneksi.php';
-                        $sql2   = "select * from mata_kuliah order by id_matkul desc";
+                        $username = $_SESSION['username'];
+                        $sql   = "select * from mahasiswa where username = '$username' ";
+                        $q     = mysqli_query($koneksi, $sql);
+                        while ($r = mysqli_fetch_array($q)) {
+                        $id_matkul2         = $r['id_matkul'];
+}
+                        
+                        $sql2   = "select * from mata_kuliah WHERE id_matkul = $id_matkul2";
                         $q2     = mysqli_query($koneksi, $sql2);
                         $urut   = 1;
                         while ($r2 = mysqli_fetch_array($q2)) {
@@ -261,7 +289,7 @@ session_start();
                                 <td scope="row"><?php echo $file ?></td>
                                 <td scope="row">Diterima</td>
 
-                                <td><a href="document_view.php?id_file=,?php echo$sb['id_file']?>" class="btn btn-warning" title="View File"style="box-shadow: 8px ">View</a></td>
+                                <td><a href="document_view.php?id_file=,?php echo$sb['id_file']?>" class="btn btn-warning" title="Ubah"style="box-shadow: 8px ">Ubah</a></td>
                               
                     
                             </tr>

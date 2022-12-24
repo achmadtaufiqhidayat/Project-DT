@@ -38,7 +38,7 @@
     ?>
 
 <p>Halo <b><?php echo $_SESSION['username']; ?></b> Anda telah login sebagai <b><?php echo $_SESSION['level']; ?></b>.</p>
- <a href="logout.php">LOGOUT</a>
+ <a href="Logout_dosen.php">LOGOUT</a>
     <!-- SIDEBAR -->
     <div class="sidebar">
         <div class="sidebar-logo">
@@ -93,7 +93,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="Logout.php">
+                            <a href="Logout_dosen.php">
                                 Logout
                             </a>
                         </li>

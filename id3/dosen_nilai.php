@@ -22,6 +22,7 @@ while ($r2 = mysqli_fetch_array($q2)) {
     $wk_sistem_cerdas  = $r2['wk_sistem_cerdas'];
     $file     = $r2['file'];
     $id_status     = $r2['id_status'];
+    $id_nilai_skripsi = $r2['id_nilai_skripsi'];
     $id_mahasiswa = $r2['id_mahasiswa'];
 }
 ?>
@@ -543,16 +544,16 @@ while ($r2 = mysqli_fetch_array($q2)) {
                                 </div>
                             </div>   
                             <form method="post" action="" >  
-                            <select name="id_status"
+                            <select name="id_nilai_skripsi"
                                         class="form-control custom-select select2 select2-hidden-accessible"
                                         data-placeholder="Pilih Mata Kuliah" tabindex="-1" aria-hidden="true"
                                         data-select2-id="select2-data-38-9jkg">
-                                        <option value="0" <?= (($id_status == "0") ? "selected" : "" )?> >Menunggu Konfirmasi</option>
-                                        <option value="1" <?= (($id_status == "1") ? "selected" : "" )?> >Diterima</option>
+                                        <option value="0" <?= (($id_nilai_skripsi == "0") ? "selected" : "" )?> >Menunggu Penilaian</option>
+                                        <option value="1" <?= (($id_nilai_skripsi == "1") ? "selected" : "" )?> >Sangat Baik</option>
                                          
-                                        <option value="2" <?= (($id_status == "2") ? "selected" : "" )?> >Diterima dengan revisi</option>
+                                        <option value="2" <?= (($id_nilai_skripsi == "2") ? "selected" : "" )?> >Baik</option>
                                          
-                                        <option value="3" <?= (($id_status == "3") ? "selected" : "" )?> >Ditolak</option>
+                                        <option value="3" <?= (($id_nilai_skripsi == "3") ? "selected" : "" )?> >Kurang</option>
                                         <!-- <option value="3">Mata Kuliah Inti</option> -->
                                     </select>
 
@@ -567,9 +568,9 @@ while ($r2 = mysqli_fetch_array($q2)) {
 
                                 <?php
 
-                                if (isset($_POST['id_status'])) {
-                                    $id_status = $_POST['id_status'];
-                                    $query = "UPDATE mata_kuliah SET id_status = $id_status WHERE id_matkul = $id_matkul";
+                                if (isset($_POST['id_nilai_skripsi'])) {
+                                    $id_nilai_skripsi = $_POST['id_nilai_skripsi'];
+                                    $query = "UPDATE mata_kuliah SET id_nilai_skripsi = $id_nilai_skripsi WHERE id_matkul = $id_matkul";
                                     $query_run = mysqli_query($koneksi, $query);
 
 

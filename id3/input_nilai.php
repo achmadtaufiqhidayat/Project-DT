@@ -300,6 +300,20 @@ session_start();
                                             </span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
                                     </div>
                                 </div> -->
+                                <?php
+                                include 'koneksi.php';
+                                $sql3   = "SELECT id_matkul FROM mata_kuliah ORDER by id_matkul DESC";
+                                $q3     = mysqli_query($koneksi, $sql3);
+                                $urut   = 1;
+                                $r2 = mysqli_fetch_array($q3);
+                                    
+                                $id_matkul2         = $r2['id_matkul']+1;
+                                
+                                ?>
+                                <div class="col-md-6 col-sm-12 mb-24">
+                                <div class="form-group"> <label class="form-label">ID Matkul</label> <input
+                                        value="<?=$id_matkul2?>"    class="form-control" disabled  name="wk_SistemTertanam" placeholder="ID Matkul"> </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6 col-sm-12 mb-24">
@@ -343,11 +357,10 @@ session_start();
                                     </div>
                                     
                                 <div class="col-md-6 col-sm-12 mb-24">
-                                    <select class="form-control custom-select select2 select2-hidden-accessible">
-                                        <option>A</option>
-                                        <option>B</option>
-                                        <option>C</option>
-                                        <option>D</option>
+                                    <select name="logika_algoritma" class="form-control custom-select select2 select2-hidden-accessible">
+                                        <option value="A" >A</option>
+                                        <option value="B" >B</option>
+                                        <option value="C" >C</option>
                                     </select>
                             </div>
 
@@ -385,11 +398,10 @@ session_start();
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-12 mb-24">
-                                    <select class="form-control custom-select select2 select2-hidden-accessible">
-                                        <option>A</option>
-                                        <option>B</option>
-                                        <option>C</option>
-                                        <option>D</option>
+                                    <select name="Matematika_Diskrit" class="form-control custom-select select2 select2-hidden-accessible">
+                                        <option value="A" >A</option>
+                                        <option value="B" >B</option>
+                                        <option value="C" >C</option>
                                     </select>
                             </div>
                             <div class="row">
@@ -428,8 +440,11 @@ session_start();
                                 </div>
                                
                                 <div class="col-md-6 col-sm-12 mb-24">
-                                    <div class="form-group"> <label class="form-label">Nilai</label> <input
-                                            class="form-control"  name="wk_SistemTertanam" placeholder="Nilai"> </div>
+                                    <select name="wk_SistemTertanam" class="form-control custom-select select2 select2-hidden-accessible">
+                                        <option value="A" >A</option>
+                                        <option value="B" >B</option>
+                                        <option value="C" >C</option>
+                                    </select>
                                 </div>
                                 <div class="col-md-6 col-sm-12 mb-24">
                                     <div class="form-group"> 
@@ -463,9 +478,11 @@ session_start();
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-12 mb-24">
-                                    <div class="form-group"> 
-                                        <!-- <label class="form-label">Price ( $ )</label>  -->
-                                        <input class="form-control" name="Wk_pcv" placeholder="Nilai"> </div>
+                                    <select name="Wk_pcv" class="form-control custom-select select2 select2-hidden-accessible">
+                                        <option value="A" >A</option>
+                                        <option value="B" >B</option>
+                                        <option value="C" >C</option>
+                                    </select>
                                 </div>
                             </div>   
                             <div class="row">
@@ -499,8 +516,11 @@ session_start();
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-12 mb-24">
-                                    <div class="form-group"> <label class="form-label">Nilai</label> <input
-                                            class="form-control" name="sistem_cerdas" placeholder="Nilai"> </div>
+                                    <select name="sistem_cerdas" class="form-control custom-select select2 select2-hidden-accessible">
+                                        <option value="A" >A</option>
+                                        <option value="B" >B</option>
+                                        <option value="C" >C</option>
+                                    </select>
                                 </div>
                                 <div class="col-md-6 col-sm-12 mb-24">
                                     <div class="form-group"> 
@@ -534,9 +554,11 @@ session_start();
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-12 mb-24">
-                                    <div class="form-group"> 
-                                        <!-- <label class="form-label">Price ( $ )</label>  -->
-                                        <input class="form-control"  name="wk_sistem_cerdas" placeholder="Nilai"> </div>
+                                    <select name="wk_sistem_cerdas" class="form-control custom-select select2 select2-hidden-accessible">
+                                        <option value="A" >A</option>
+                                        <option value="B" >B</option>
+                                        <option value="C" >C</option>
+                                    </select>
                                 </div>
                             </div>   
 
@@ -605,18 +627,24 @@ if (isset($_POST['save'])) {
     $sistem_cerdas = $_POST['sistem_cerdas'];
     $wk_sistem_cerdas = $_POST['wk_sistem_cerdas'];
     $name = $_POST['name'];
+    $username = $_SESSION['username'];
     if (isset($_FILES['file']['name'])) {
         $file_name = $_FILES['file']['name'];
         $file_tmp = $_FILES['file']['tmp_name'];
         move_uploaded_file($file_tmp, "./Document/" . $file_name);
 
-        $query = "INSERT INTO mata_kuliah (logika_algoritma,Matematika_Diskrit,wk_SistemTertanam,Wk_pcv,sistem_cerdas,wk_sistem_cerdas,name,file) VALUES ('$logika_algoritma','$Matematika_Diskrit','$wk_SistemTertanam','$Wk_pcv','$sistem_cerdas','$wk_sistem_cerdas','$name','$file_name')";
+        $query = "INSERT INTO mata_kuliah (id_matkul,logika_algoritma,Matematika_Diskrit,wk_SistemTertanam,Wk_pcv,sistem_cerdas,wk_sistem_cerdas,name,file) VALUES ($id_matkul2,'$logika_algoritma','$Matematika_Diskrit','$wk_SistemTertanam','$Wk_pcv','$sistem_cerdas','$wk_sistem_cerdas','$name','$file_name')";
         $query_run = mysqli_query($koneksi, $query);
+
+        $query2 = "UPDATE mahasiswa SET id_matkul = $id_matkul2 WHERE username = '$username' ";
+        $query_run2 = mysqli_query($koneksi, $query2);
     }
 
-        if ($query_run) 
+        if ($query_run && $query_run2) 
         {
-        echo '<script type="text/javascript">alert("Data Berhasil di simpan")</script>';
+        echo '<script type="text/javascript">alert("Data Berhasil di simpan")
+            window.location.href = "cek_status.php" 
+        </script>';
         }
         else{
 
