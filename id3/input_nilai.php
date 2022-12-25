@@ -96,7 +96,7 @@ session_start();
                             </a>
                         </li> -->
                         <li>
-                            <a href="Logout.php">
+                            <a href="Logout_mahasiswa.php">
                                 Logout
                             </a>
                         </li>
@@ -215,7 +215,7 @@ session_start();
                         <a class="dropdown-item d-block" href="#"><span class="badge bg-success float-end">11</span><i class="bx bx-wrench font-size-16 align-middle me-1"></i> <span>Settings</span></a>
                         <a class="dropdown-item" href="#"><i class="bx bx-lock-open font-size-16 align-middle me-1"></i> <span>Lock screen</span></a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-danger" href="user-login.html"><i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> <span>Logout</span></a>
+                        <a class="dropdown-item text-danger" href="Logout_mahasiswa.php"><i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> <span>Logout</span></a>
                     </div>
                 </div>
             </div>
@@ -312,7 +312,7 @@ session_start();
                                 ?>
                                 <div class="col-md-6 col-sm-12 mb-24">
                                 <div class="form-group"> <label class="form-label">ID Matkul</label> <input
-                                        value="<?=$id_matkul2?>"    class="form-control" disabled  name="wk_SistemTertanam" placeholder="ID Matkul"> </div>
+                                        value="<?=$id_matkul2?>"    class="form-control" disabled  name="id_matkul" placeholder="ID Matkul"> </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -357,12 +357,9 @@ session_start();
                                     </div>
                                     
                                 <div class="col-md-6 col-sm-12 mb-24">
-                                    <select name="logika_algoritma" class="form-control custom-select select2 select2-hidden-accessible">
-                                        <option value="A" >A</option>
-                                        <option value="B" >B</option>
-                                        <option value="C" >C</option>
-                                    </select>
-                            </div>
+                                    <div class="form-group"> <label class="form-label">Nilai</label> 
+                                    <input name="logika_algoritma" class="form-control" maxlength="4" onkeyup="oneDot(this)" placeholder="Tulis nilai anda"> </div>
+                                </div>
 
 
 
@@ -398,12 +395,9 @@ session_start();
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-12 mb-24">
-                                    <select name="Matematika_Diskrit" class="form-control custom-select select2 select2-hidden-accessible">
-                                        <option value="A" >A</option>
-                                        <option value="B" >B</option>
-                                        <option value="C" >C</option>
-                                    </select>
-                            </div>
+                                    <input name="Matematika_Diskrit" class="form-control" maxlength="4" onkeyup="oneDot(this)" placeholder="Tulis nilai anda"> </div>
+                                </div>
+
                             <div class="row">
                                 <div class="col-md-6 col-sm-12 mb-24">
                                     <div class="form-group"> <label class="form-label">Jenis Matakuliah: Mata Kuliah Pendukung</label> <select
@@ -440,11 +434,8 @@ session_start();
                                 </div>
                                
                                 <div class="col-md-6 col-sm-12 mb-24">
-                                    <select name="wk_SistemTertanam" class="form-control custom-select select2 select2-hidden-accessible">
-                                        <option value="A" >A</option>
-                                        <option value="B" >B</option>
-                                        <option value="C" >C</option>
-                                    </select>
+                                    <div class="form-group"> <label class="form-label">Nilai</label> 
+                                    <input name="wk_SistemTertanam" class="form-control" maxlength="4" onkeyup="oneDot(this)" placeholder="Tulis nilai anda"> </div>
                                 </div>
                                 <div class="col-md-6 col-sm-12 mb-24">
                                     <div class="form-group"> 
@@ -478,11 +469,7 @@ session_start();
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-12 mb-24">
-                                    <select name="Wk_pcv" class="form-control custom-select select2 select2-hidden-accessible">
-                                        <option value="A" >A</option>
-                                        <option value="B" >B</option>
-                                        <option value="C" >C</option>
-                                    </select>
+                                    <input name="Wk_pcv" class="form-control" maxlength="4" onkeyup="oneDot(this)" placeholder="Tulis nilai anda"> </div>
                                 </div>
                             </div>   
                             <div class="row">
@@ -516,12 +503,10 @@ session_start();
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-12 mb-24">
-                                    <select name="sistem_cerdas" class="form-control custom-select select2 select2-hidden-accessible">
-                                        <option value="A" >A</option>
-                                        <option value="B" >B</option>
-                                        <option value="C" >C</option>
-                                    </select>
+                                    <div class="form-group"> <label class="form-label">Nilai</label> 
+                                    <input name="sistem_cerdas" class="form-control" maxlength="4" onkeyup="oneDot(this)" placeholder="Tulis nilai anda"> </div>
                                 </div>
+                                
                                 <div class="col-md-6 col-sm-12 mb-24">
                                     <div class="form-group"> 
                                         <!-- <label class="form-label">Jenis Matakuliah: Mata Kuliah Dasar</label>  -->
@@ -554,11 +539,7 @@ session_start();
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-12 mb-24">
-                                    <select name="wk_sistem_cerdas" class="form-control custom-select select2 select2-hidden-accessible">
-                                        <option value="A" >A</option>
-                                        <option value="B" >B</option>
-                                        <option value="C" >C</option>
-                                    </select>
+                                    <input name="wk_sistem_cerdas" class="form-control" maxlength="4" onkeyup="oneDot(this)" placeholder="Tulis nilai anda"> </div>
                                 </div>
                             </div>   
 
@@ -584,6 +565,18 @@ session_start();
     <div class="overlay"></div>
 
     <!-- SCRIPT -->
+    <script>
+        function oneDot(input) {
+            var value = input.value,
+            value = value.split('.').join('');
+
+        if (value.length > 2) {
+        value = value.substring(0, value.length - 2) + '.' + value.substring(value.length - 2, value.length);
+        }
+
+        input.value = value;
+    }
+    </script>
     <!-- APEX CHART -->
 
     <script src="./libs/jquery/jquery.min.js"></script>

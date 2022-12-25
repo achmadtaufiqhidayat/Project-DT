@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Waktu pembuatan: 23 Des 2022 pada 17.25
--- Versi server: 10.4.25-MariaDB
--- Versi PHP: 8.1.10
+-- Host: localhost
+-- Generation Time: Dec 25, 2022 at 11:30 AM
+-- Server version: 5.7.33
+-- PHP Version: 8.0.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `document`
+-- Table structure for table `document`
 --
 
 CREATE TABLE `document` (
@@ -35,7 +35,7 @@ CREATE TABLE `document` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `dosen`
+-- Table structure for table `dosen`
 --
 
 CREATE TABLE `dosen` (
@@ -43,71 +43,102 @@ CREATE TABLE `dosen` (
   `nama` varchar(30) NOT NULL,
   `username` varchar(30) NOT NULL,
   `password` int(11) NOT NULL,
-  `level` varchar(11) NOT NULL,
-  `aktif` enum('0','1') NOT NULL
+  `level` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `dosen`
+-- Dumping data for table `dosen`
 --
 
-INSERT INTO `dosen` (`nip`, `nama`, `username`, `password`, `level`, `aktif`) VALUES
-('197909212005011001', 'Dody', 'Dody123', 12345, 'Dosen', '1'),
-('1979092120050511001', '0', '0', 0, '0', '0');
+INSERT INTO `dosen` (`nip`, `nama`, `username`, `password`, `level`) VALUES
+('197909212005011001', 'Dody', 'Dody123', 12345, 'Dosen'),
+('1979092120050511001', '0', '0', 0, '0');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `mahasiswa`
+-- Table structure for table `mahasiswa`
 --
 
 CREATE TABLE `mahasiswa` (
   `id_mahasiswa` int(11) NOT NULL,
-  `id_matkul` int(11) NOT NULL,
+  `id_matkul` int(11) DEFAULT NULL,
   `nama` varchar(100) NOT NULL,
   `username` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `level` varchar(20) NOT NULL,
-  `aktif` enum('0','1') NOT NULL
+  `level` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `mahasiswa`
+-- Dumping data for table `mahasiswa`
 --
 
-INSERT INTO `mahasiswa` (`id_mahasiswa`, `id_matkul`, `nama`, `username`, `password`, `level`, `aktif`) VALUES
-(4, 28, 'Yusril', 'yusril123', 'yusril123', 'mahasiswa', '1');
+INSERT INTO `mahasiswa` (`id_mahasiswa`, `id_matkul`, `nama`, `username`, `password`, `level`) VALUES
+(4, 28, 'Yusril', 'yusril123', 'yusril123', 'mahasiswa'),
+(5, 30, 'Taufiq Hidayat', 'taufiq123', 'taufiq123', 'mahasiswa'),
+(6, 31, 'Fikri', 'Fikri123', 'Fikri123', 'mahasiswa'),
+(7, 32, 'naufal', 'Naufal123', 'Naufal123', 'mahasiswa'),
+(8, 33, 'widha', 'widha123', 'widha123', 'mahasiswa'),
+(9, 34, 'hani', 'Hani123', 'Hani123', 'mahasiswa'),
+(10, NULL, 'luki', 'Luki123', 'Luki123', 'mahasiswa');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `mata_kuliah`
+-- Table structure for table `mata_kuliah`
 --
 
 CREATE TABLE `mata_kuliah` (
   `id_matkul` int(11) NOT NULL,
-  `logika_algoritma` enum('A','B','C','D') NOT NULL,
-  `matematika_Diskrit` enum('A','B','C','D') NOT NULL,
-  `wk_sistemtertanam` enum('A','B','C','D') NOT NULL,
-  `wk_pcv` enum('A','B','C','D') NOT NULL,
-  `sistem_cerdas` enum('A','B','C','D') NOT NULL,
-  `wk_sistem_cerdas` enum('A','B','C','D') NOT NULL,
+  `logika_algoritma` float NOT NULL,
+  `matematika_Diskrit` float NOT NULL,
+  `wk_sistemtertanam` float NOT NULL,
+  `wk_pcv` float NOT NULL,
+  `sistem_cerdas` float NOT NULL,
+  `wk_sistem_cerdas` float NOT NULL,
   `name` text NOT NULL,
   `file` varchar(50) NOT NULL,
-  `id_status` int(3) NOT NULL
+  `id_status` int(3) NOT NULL DEFAULT '0',
+  `id_nilai_skripsi` int(3) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `mata_kuliah`
+-- Dumping data for table `mata_kuliah`
 --
 
-INSERT INTO `mata_kuliah` (`id_matkul`, `logika_algoritma`, `matematika_Diskrit`, `wk_sistemtertanam`, `wk_pcv`, `sistem_cerdas`, `wk_sistem_cerdas`, `name`, `file`, `id_status`) VALUES
-(28, 'B', 'A', 'B', 'A', 'B', 'B', 'Skripsi.pdf', 'hiya hiiya', 3);
+INSERT INTO `mata_kuliah` (`id_matkul`, `logika_algoritma`, `matematika_Diskrit`, `wk_sistemtertanam`, `wk_pcv`, `sistem_cerdas`, `wk_sistem_cerdas`, `name`, `file`, `id_status`, `id_nilai_skripsi`) VALUES
+(28, 2.3, 1.5, 2, 1, 2, 2, 'Skripsi.pdf', 'hiya hiiya', 3, 3),
+(30, 1, 1, 1, 1, 1, 1, 'file keren', 'Konsep dasar mikrokomputer.pdf', 0, 2),
+(31, 1, 1, 1, 1, 1, 1, 'fdgdg', 'DATA STAN SEMESTER 4  PAMERAN TIF 2022.pdf', 0, 0),
+(32, 1, 2, 2, 2, 1, 1, 'File keren sekali', 'UNDANGAN PURNA.pdf', 0, 0),
+(33, 2, 2, 1, 1, 1, 2, 'skripsi keren', 'Rundown Kegiatan Adopsi Kegiatan MF.pdf', 0, 0),
+(34, 2, 1, 1, 1, 1, 1, 'ssdfsdfs', 'UNDANGAN PURNA.pdf', 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `status`
+-- Table structure for table `nilai_skripsi`
+--
+
+CREATE TABLE `nilai_skripsi` (
+  `id_nilai_skripsi` int(3) NOT NULL,
+  `nilai_skripsi` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `nilai_skripsi`
+--
+
+INSERT INTO `nilai_skripsi` (`id_nilai_skripsi`, `nilai_skripsi`) VALUES
+(0, 'Menunggu Penilaian'),
+(1, 'Sangat Baik'),
+(2, 'Baik'),
+(3, 'Kurang');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `status`
 --
 
 CREATE TABLE `status` (
@@ -116,7 +147,7 @@ CREATE TABLE `status` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `status`
+-- Dumping data for table `status`
 --
 
 INSERT INTO `status` (`id_status`, `status`) VALUES
@@ -130,62 +161,62 @@ INSERT INTO `status` (`id_status`, `status`) VALUES
 --
 
 --
--- Indeks untuk tabel `document`
+-- Indexes for table `document`
 --
 ALTER TABLE `document`
   ADD PRIMARY KEY (`id_document`),
   ADD KEY `document` (`document`);
 
 --
--- Indeks untuk tabel `dosen`
+-- Indexes for table `dosen`
 --
 ALTER TABLE `dosen`
   ADD PRIMARY KEY (`nip`);
 
 --
--- Indeks untuk tabel `mahasiswa`
+-- Indexes for table `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
   ADD PRIMARY KEY (`id_mahasiswa`),
   ADD KEY `id_matkul` (`id_matkul`);
 
 --
--- Indeks untuk tabel `mata_kuliah`
+-- Indexes for table `mata_kuliah`
 --
 ALTER TABLE `mata_kuliah`
   ADD PRIMARY KEY (`id_matkul`);
 
 --
--- Indeks untuk tabel `status`
+-- Indexes for table `nilai_skripsi`
+--
+ALTER TABLE `nilai_skripsi`
+  ADD PRIMARY KEY (`id_nilai_skripsi`);
+
+--
+-- Indexes for table `status`
 --
 ALTER TABLE `status`
   ADD PRIMARY KEY (`id_status`),
   ADD UNIQUE KEY `status` (`status`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `document`
+-- AUTO_INCREMENT for table `document`
 --
 ALTER TABLE `document`
   MODIFY `id_document` int(5) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `mahasiswa`
+-- AUTO_INCREMENT for table `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
-  MODIFY `id_mahasiswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_mahasiswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT untuk tabel `mata_kuliah`
---
-ALTER TABLE `mata_kuliah`
-  MODIFY `id_matkul` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
-
---
--- AUTO_INCREMENT untuk tabel `status`
+-- AUTO_INCREMENT for table `status`
 --
 ALTER TABLE `status`
   MODIFY `id_status` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;

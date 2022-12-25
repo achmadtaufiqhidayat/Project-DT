@@ -302,7 +302,7 @@
                     <h1>Login Dosen</h1>
                 </div>
                 <div class="form-content">
-                    <form>
+                    <form action="cek_login.php" method="post">
                     <div class="form-group">
                         <label for="username">Username</label>
                         <input type="text" id="username" name="username" required="required" placeholder="masukkan username" />
