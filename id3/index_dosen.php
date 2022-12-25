@@ -170,14 +170,14 @@
                     <i class='bx bx-menu'></i>
                 </div>
                 <div class="main-title">
-                    New Project
+                    Project DT
                 </div>
             </div>
     
             <div class="d-flex align-items-center">
     
                 <!-- App Search-->
-                <form class="app-search d-none d-lg-block">
+                <!-- <form class="app-search d-none d-lg-block">
                     <div class="position-relative">
                         <input type="text" class="form-control" placeholder="Search">
                         <span class="bx bx-search-alt"></span>
@@ -200,48 +200,23 @@
                             </div>
                         </form>
                     </div>
-                </div>
+                </div> -->
     
-                <div class="dropdown d-inline-block">
-                    <button type="button" class="btn header-item" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="btn dropdown-toggle" id="header-lang-img">
-                                EN 
-                                <i class='bx bx-caret-down'></i>
+                <div>
+                    <button class="btn header-item" aria-haspopup="true" aria-expanded="false">
+                    <a href="index_mahasiswa.php" >
+                            <span id="header-lang-img" >
+                                Login sebagai Mahasiswa 
                             </span>
-                        </button>
-                    <div class="dropdown-menu dropdown-menu-end">
-    
-                        <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="en">
-                            <img src="./images/flags/us.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">English</span>
-                        </a>
-                        <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="sp">
-                            <img src="./images/flags/spain.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Spanish</span>
-                        </a>
-    
-                        <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="gr">
-                            <img src="./images/flags/germany.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">German</span>
-                        </a>
-    
-                        <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="it">
-                            <img src="./images/flags/italy.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Italian</span>
-                        </a>
-    
-                        <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="ru">
-                            <img src="./images/flags/russia.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Russian</span>
-                        </a>
-                    </div>
+                    </a>
+                    </button>
                 </div>
                 <!-- <div class="dropdown d-none d-lg-inline-block ms-1">
                     <button type="button" class="btn header-item noti-icon waves-effect" data-toggle="fullscreen">
                             <i class="bx bx-fullscreen"></i>
                         </button>
                 </div> -->
-                <div class="dropdown d-inline-block mt-12">
+                <!-- <div class="dropdown d-inline-block mt-12">
                     <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img class="rounded-circle header-profile-user" src="./images/profile/profile.png"
                                 alt="Header Avatar">
@@ -253,16 +228,16 @@
                                 
                             <i class='bx bx-chevron-down'></i>
                         </button>
-                    <div class="dropdown-menu dropdown-menu-end">
+                    <div class="dropdown-menu dropdown-menu-end"> -->
                         <!-- item-->
-                        <a class="dropdown-item" href="#"><i class="bx bx-user font-size-16 align-middle me-1"></i> <span>Profile</span></a>
+                        <!-- <a class="dropdown-item" href="#"><i class="bx bx-user font-size-16 align-middle me-1"></i> <span>Profile</span></a>
                         <a class="dropdown-item" href="#"><i class="bx bx-wallet font-size-16 align-middle me-1"></i> <span>My Wallet</span></a>
                         <a class="dropdown-item d-block" href="#"><span class="badge bg-success float-end">11</span><i class="bx bx-wrench font-size-16 align-middle me-1"></i> <span>Settings</span></a>
                         <a class="dropdown-item" href="#"><i class="bx bx-lock-open font-size-16 align-middle me-1"></i> <span>Lock screen</span></a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item text-danger" href="user-login.html"><i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> <span>Logout</span></a>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
         <!-- End Main Header -->
@@ -288,7 +263,7 @@
  ?>
                                 
                                 <div class="action-reg">
-                                    <h4 class="fs-30">Login</h4>
+                                    <h4 class="fs-30">Login Dosen</h4>
                                     <a href="new-account.html">Sign in to your account</a>
                                 </div>
     
