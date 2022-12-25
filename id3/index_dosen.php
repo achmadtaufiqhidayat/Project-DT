@@ -11,6 +11,9 @@
     <link rel="shortcut icon" href="./images/favicon.png" type="image/png">
     <!-- GOOGLE FONT -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons'>
+  
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <!-- BOXICONS -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -18,6 +21,7 @@
 
     <link rel="stylesheet" href="./libs/date-picker/datepicker.css">
     <!-- APP CSS -->
+    <link rel="stylesheet" href="./login-dosen/login-formmodal/dist/style.css">
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/grid.css">
     <link rel="stylesheet" href="./css/style.css">
@@ -27,7 +31,7 @@
 <body class="sidebar-expand counter-scroll">
 
     <!-- SIDEBAR -->
-    <div class="sidebar">
+    <!-- <div class="sidebar">
         <div class="sidebar-logo">
                         <a href="index.html">
                 <img src="./images/logo.png" alt="Protend logo">
@@ -35,9 +39,9 @@
             <div class="sidebar-close" id="sidebar-close">
                 <i class='bx bx-left-arrow-alt'></i>
             </div>
-        </div>
+        </div> -->
         <!-- SIDEBAR MENU -->
-        <div class="simlebar-sc" data-simplebar>
+        <!-- <div class="simlebar-sc" data-simplebar>
             <ul class="sidebar-menu tf">
                 <li class="sidebar-submenu">
                     <a href="index.html" class="sidebar-menu-dropdown current-menu-item">
@@ -159,22 +163,22 @@
                     </a>
                 </li>
             </ul>
-        </div>
+        </div> -->
         <!-- END SIDEBAR MENU -->
-    </div>
+    <!-- </div> -->
     <!-- END SIDEBAR -->
         <!-- Main Header -->
         <div class="main-header">
             <div class="d-flex">
-                <div class="mobile-toggle" id="mobile-toggle">
+                <!-- <div class="mobile-toggle" id="mobile-toggle">
                     <i class='bx bx-menu'></i>
-                </div>
-                <div class="main-title">
+                </div> -->
+                <div class="main-title" style="text-align:center">
                     Project DT
                 </div>
             </div>
     
-            <div class="d-flex align-items-center">
+            <!-- <div class="d-flex align-items-center"> -->
     
                 <!-- App Search-->
                 <!-- <form class="app-search d-none d-lg-block">
@@ -238,22 +242,22 @@
                         <a class="dropdown-item text-danger" href="user-login.html"><i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> <span>Logout</span></a>
                     </div>
                 </div> -->
-            </div>
+            <!-- </div> -->
         </div>
         <!-- End Main Header -->
 
     <!-- MAIN CONTENT -->
-    <div class="main">
+    <!-- <div class="main"> -->
 
         <div class="main-content">
             <section class="login">
-                <div class="row">
-                    <div class="col-12">
+                <!-- <div class="row">
+                    <div class="col-6 text-center">
                         <div class="box">
-                            <div class="box-header d-flex justify-content-between">
-                                <a href="index.html">
+                            <div class="box-header d-flex "> -->
+                                <!-- <a href="index.html">
                                     <img src="./images/logo.png" alt="">
-                                </a>
+                                </a>-->
                                 <?php
  if(isset($_GET['pesan'])){
   if($_GET['pesan']=="gagal"){
@@ -262,7 +266,7 @@
  }
  ?>
                                 
-                                <div class="action-reg">
+                                <!-- <div class="action-reg">
                                     <h4 class="fs-30">Login Dosen</h4>
                                     <a href="new-account.html">Sign in to your account</a>
                                 </div>
@@ -290,15 +294,42 @@
                                         </div>
                         
     
-                                        </div>
-                                        <div class="mb-3">
+                                        </div> -->
+                <div class="form">
+                <div class="form-toggle"></div>
+                <div class="form-panel one">
+                <div class="form-header">
+                    <h1>Login Dosen</h1>
+                </div>
+                <div class="form-content">
+                    <form>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" required="required" placeholder="masukkan username" />
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required="required" placeholder="********" />
+                    </div>
+                    <!-- <div class="form-group">
+                    <label class="form-remember">
+                        <input type="checkbox"/>Remember Me
+                    </label><a class="form-recovery" href="#">Forgot Password?</a>
+                    </div> -->
+                    <div class="form-group">
+                        <button type="submit">Log In</button>
+                    </div>
+                    </form>
+                </div>
+                </div>
+                                        <!-- <div class="mb-3">
                                             <button class="btn bg-primary color-white w-100 waves-effect waves-light fs-18 font-w500" type="submit">Sign in</button>
                                         </div>
-                                    </form>
+                                    </form> -->
     
                
     
-                                    <div class="mt-37 text-center">
+                                    <!-- <div class="mt-37 text-center">
     
                                         <ul class="list-inline mb-0">
                                             <li class="list-inline-item">
@@ -322,15 +353,15 @@
                                                 </a>
                                             </li>
                                         </ul>
-                                    </div>
+                                    </div> -->
                                 </div>
-                            </div>
+                            <!-- </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </section>
         </div>
-    </div>
+    <!-- </div> -->
     <!-- END MAIN CONTENT -->
 
     <div class="overlay"></div>
