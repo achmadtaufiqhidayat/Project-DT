@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 27, 2022 at 09:27 AM
+-- Generation Time: Dec 27, 2022 at 03:56 PM
 -- Server version: 5.7.33
 -- PHP Version: 8.0.15
 
@@ -80,7 +80,8 @@ INSERT INTO `mahasiswa` (`id_mahasiswa`, `id_matkul`, `nama`, `username`, `passw
 (7, 32, 'naufal', 'Naufal123', 'Naufal123', 'mahasiswa'),
 (8, 33, 'widha', 'widha123', 'widha123', 'mahasiswa'),
 (9, 34, 'hani', 'Hani123', 'Hani123', 'mahasiswa'),
-(10, 35, 'luki', 'Luki123', 'Luki123', 'mahasiswa');
+(10, 35, 'luki', 'Luki123', 'Luki123', 'mahasiswa'),
+(11, 36, 'Tegar Karunia', 'Tegar123', 'Tegar123', 'mahasiswa');
 
 -- --------------------------------------------------------
 
@@ -113,7 +114,8 @@ INSERT INTO `mata_kuliah` (`id_matkul`, `logika_algoritma`, `matematika_Diskrit`
 (32, 3, 3, 3.5, 3.5, 2.5, 2.5, 'File keren sekali', 'UNDANGAN PURNA.pdf', 2, 2),
 (33, 2, 2, 1, 1, 1, 2, 'skripsi keren', 'Rundown Kegiatan Adopsi Kegiatan MF.pdf', 0, 0),
 (34, 2, 1, 1, 1, 1, 1, 'ssdfsdfs', 'UNDANGAN PURNA.pdf', 0, 0),
-(35, 3.5, 3.6, 3.2, 3.8, 3.8, 3.5, 'Skripsi keren 2', '', 1, 2);
+(35, 3.5, 3.6, 3.2, 3.8, 3.8, 3.5, 'Skripsi keren 2', '', 1, 1),
+(36, 3.2, 2.3, 2.6, 3.2, 3.4, 4, 'Skripsi saya', 'Pengumuman PEMKAB 2022 POLIJE.pdf', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -214,7 +216,7 @@ ALTER TABLE `document`
 -- AUTO_INCREMENT for table `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
-  MODIFY `id_mahasiswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_mahasiswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `status`
