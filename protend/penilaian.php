@@ -1,9 +1,20 @@
 <?php
 // mengaktifkan session php
 session_start();
-// cek apakah yang mengakses halaman ini sudah login
-if ($_SESSION['level'] == "") {
-    header("location:index.php?pesan=gagal");
+
+function Status($id_status)
+{
+    if($id_status == 1 ){
+        $hasil = 'Diterima';
+    } else if($id_status == 2 ) {
+        $hasil = 'Diterima dengan Revisi';
+    } else if ($id_status == 3) {
+        $hasil = 'Ditolak';
+    }
+    else if ($id_status == 0){
+        $hasil = 'Menunggu konfirmasi';
+    }
+    return $hasil;
 }
 ?>
 <!DOCTYPE html>
@@ -14,7 +25,7 @@ if ($_SESSION['level'] == "") {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        Politeknik negeri jember - ID3-Mahasiswa
+        Protend - Project Management Admin Dashboard HTML Template
     </title>
     <link rel="shortcut icon" href="./images/favicon.png" type="image/png">
     <!-- GOOGLE FONT -->
@@ -22,9 +33,7 @@ if ($_SESSION['level'] == "") {
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <!-- BOXICONS -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-
-    <!-- Plugin -->
-    <link rel="stylesheet" href="./libs/owl.carousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/icons.min.css">
 
     <!-- APP CSS -->
     <link rel="stylesheet" href="./css/bootstrap.min.css">
@@ -35,12 +44,12 @@ if ($_SESSION['level'] == "") {
 
 <body class="sidebar-expand">
 
-  
     <!-- SIDEBAR -->
     <div class="sidebar">
         <div class="sidebar-logo">
             <a href="index.html">
                 <img src="./images/logo.png" alt="Protend logo">
+                <a>Desition tree - ID3</a>
             </a>
             <div class="sidebar-close" id="sidebar-close">
                 <i class='bx bx-left-arrow-alt'></i>
@@ -58,26 +67,26 @@ if ($_SESSION['level'] == "") {
                         </div>
                     </a>
                     <ul class="sidebar-menu sidebar-menu-dropdown-content">
-                        <li>
-                            <a href="input_nilai.php">
-                                Input data
+                    <li>
+                            <a href="penilaian.php">
+                                Penilaian Skripsi
                             </a>
                         </li>
                         <li>
-                            <a href="cek_status.php">
-                                Cek status
+                            <a href="data_mahasiswa.php">
+                                Data mahasiswa
                             </a>
                         </li>
                     </ul>
                 </li>
                 <li class="sidebar-submenu">
-                    <a href="project.html" class="sidebar-menu-dropdown">
+                    <a href="project.html" class="sidebar-menu-dropdown current-menu-item">
                         <i class='bx bxs-bolt'></i>
                         <span>Setting</span>
                         <div class="dropdown-icon"><i class='bx bx-chevron-down'></i></div>
                     </a>
-                    <ul class="sidebar-menu sidebar-menu-dropdown-content">
-                        <li>
+                    <ul class="sidebar-menu sidebar-menu-dropdown-content active">
+                    <li>
                             <a href="profile.php">
                                 profile
                             </a>
@@ -85,17 +94,17 @@ if ($_SESSION['level'] == "") {
                         </li>
                         <li>
                             <a href="register.php">
-                                Register user
+                                Register
                             </a>
                         </li>
+                      
                         <li>
-                            <a href="Logout.php">
+                            <a href="Logout_dosen.php">
                                 Logout
                             </a>
                         </li>
                     </ul>
                 </li>
-
 
                 <li>
                     <a class="darkmode-toggle" id="darkmode-toggle" onclick="switchTheme()">
@@ -109,10 +118,10 @@ if ($_SESSION['level'] == "") {
                 </li>
             </ul>
         </div>
-
         <!-- END SIDEBAR MENU -->
     </div>
     <!-- END SIDEBAR -->
+
     <!-- Main Header -->
     <div class="main-header">
         <div class="d-flex">
@@ -120,7 +129,7 @@ if ($_SESSION['level'] == "") {
                 <i class='bx bx-menu'></i>
             </div>
             <div class="main-title">
-                Dashboard
+            
             </div>
         </div>
 
@@ -135,8 +144,8 @@ if ($_SESSION['level'] == "") {
             </form>
             <div class="dropdown d-inline-block d-lg-none ms-2">
                 <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-search-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class='bx bx-search-alt'></i>
-                </button>
+                        <i class='bx bx-search-alt' ></i>
+                    </button>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0" aria-labelledby="page-header-search-dropdown">
 
                     <form class="p-3">
@@ -144,7 +153,7 @@ if ($_SESSION['level'] == "") {
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
                                 <div class="input-group-append">
-                                    <button class="btn btn-primary h-100" type="submit"><i class='bx bx-search-alt'></i></button>
+                                    <button class="btn btn-primary h-100" type="submit"><i class='bx bx-search-alt' ></i></button>
                                 </div>
                             </div>
                         </div>
@@ -154,11 +163,11 @@ if ($_SESSION['level'] == "") {
 
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="btn dropdown-toggle" id="header-lang-img">
-                        EN
-                        <i class='bx bx-caret-down'></i>
-                    </span>
-                </button>
+                        <span class="btn dropdown-toggle" id="header-lang-img">
+                            EN 
+                            <i class='bx bx-caret-down'></i>
+                        </span>
+                    </button>
                 <div class="dropdown-menu dropdown-menu-end">
 
                     <!-- item-->
@@ -193,15 +202,17 @@ if ($_SESSION['level'] == "") {
             </div> -->
             <div class="dropdown d-inline-block mt-12">
                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="rounded-circle header-profile-user" src="./images/profile/profile.png" alt="Header Avatar">
-                    <span class="pulse-css"></span>
-                    <span class="info d-xl-inline-block  color-span">
-                        <span class="d-block fs-20 font-w600">Randy Riley</span>
-                        <span class="d-block mt-7">randy.riley@gmail.com</span>
-                    </span>
-
-                    <i class='bx bx-chevron-down'></i>
-                </button>
+                        <img class="rounded-circle header-profile-user" src="./images/profile/profile.png"
+                            alt="Header Avatar">
+                        <span class="pulse-css"></span>
+                        <span class="info d-xl-inline-block  color-span">
+                        <span class="d-block fs-20 font-w600"><b><?php echo $_SESSION['username']; ?><??></b></span>
+                         
+                     
+                        </span>
+                            
+                        <i class='bx bx-chevron-down'></i>
+                    </button>
                 <div class="dropdown-menu dropdown-menu-end">
                     <!-- item-->
                     <a class="dropdown-item" href="#"><i class="bx bx-user font-size-16 align-middle me-1"></i> <span>Profile</span></a>
@@ -209,99 +220,108 @@ if ($_SESSION['level'] == "") {
                     <a class="dropdown-item d-block" href="#"><span class="badge bg-success float-end">11</span><i class="bx bx-wrench font-size-16 align-middle me-1"></i> <span>Settings</span></a>
                     <a class="dropdown-item" href="#"><i class="bx bx-lock-open font-size-16 align-middle me-1"></i> <span>Lock screen</span></a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger" href="user-login.html"><i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> <span>Logout</span></a>
+                    <a class="dropdown-item text-danger" href="Logout_dosen.php"><i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> <span>Logout</span></a>
                 </div>
             </div>
         </div>
     </div>
     <!-- End Main Header -->
+
     <!-- MAIN CONTENT -->
-
     <div class="main">
+<h1>Tegar karunia ilham</h1>
+    <div class="card">
+            <div class="card-title mb-0 fs-22">
+                Data  Nilai
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">logika algoritma</th>
+                            <th scope="col">matematika Diskrit</th>
+                            <th scope="col">wokshop tertanam</th>
+                            <th scope="col">wk_pcv</th>
+                            <th scope="col">sistem_cerdas</th>
+                            <th scope="col">wk_cerdas</th>
+                            <th scope="col">file</th>
+                            <th scope="col">status</th>
+                            <th scope="col">Opsi</th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        include 'koneksi.php';
+                        $sql2   = "SELECT * FROM mata_kuliah INNER JOIN mahasiswa ON mahasiswa.id_matkul = mata_kuliah.id_matkul";
+                        $q2     = mysqli_query($koneksi, $sql2);
+                        $urut   = 1;
+                        while ($r2 = mysqli_fetch_array($q2)) {
+                            
+                            $id_matkul         = $r2['id_matkul'];
+                            $nama         = $r2['nama'];
+                            $logika_algoritma        = $r2['logika_algoritma'];
+                            $matematika_Diskrit       = $r2['matematika_Diskrit'];
+                            $wk_sistemtertanam     = $r2['wk_sistemtertanam'];
+                            $wk_pcv   = $r2['wk_pcv'];
+                            $sistem_cerdas     = $r2['sistem_cerdas'];
+                            $wk_sistem_cerdas  = $r2['wk_sistem_cerdas'];
+                            $file     = $r2['file'];
+                            $id_status     = $r2['id_status'];
+                            $id_mahasiswa = $r2['id_mahasiswa']
 
+                        ?>
+                            <tr>
+                                <th scope="row"><?php echo $urut++ ?></th>
+                                <td scope="row"><?php echo $nama ?></td>
+                                <td scope="row"><?php echo $logika_algoritma ?></td>
+                                <td scope="row"><?php echo $matematika_Diskrit ?></td>
+                                <td scope="row"><?php echo $wk_sistemtertanam ?></td>
+                                <td scope="row"><?php echo $wk_pcv ?></td>
+                                <td scope="row"><?php echo $sistem_cerdas ?></td>
+                                <td scope="row"><?php echo $wk_sistem_cerdas ?></td>
+                                <td scope="row"><?php echo $file ?></td>
+                                <td scope="row"><?php echo Status($id_status) ?></td>
 
-        <div class="main-content dashboard">
-            <div class="row">
-                <div class="col-12">
-                    <div class="box card-box">
-                        <div class="icon-box bg-color-1">
-                            <div class="icon bg-icon-1">
-                                <i class="bx bxs-bell bx-tada bx-tada"></i>
-                            </div>
-                            <div class="content">
-                                <h5 class="title-box">Notification</h5>
-                                <p class="color-1 mb-0 pt-4">5 Unread notification</p>
-                            </div>
-                        </div>
-                        <div class="icon-box bg-color-2">
-                            <div class="icon bg-icon-2">
-                                <i class='bx bxs-message-rounded'></i>
-                            </div>
-                            <div class="content click-c">
-                                <h5 class="title-box">Message</h5>
-                                <p class="color-2 mb-0 pt-4">5 Unread notification</p>
-                            </div>
-                            <div class="notification-list card">
-                                <div class="top box-header">
-                                    <h5>Notification</h5>
+                                <td><a href="dosen_nilai.php?id_mahasiswa=<?= $r2['id_mahasiswa']?>" class="btn btn-success" title="View File"style="box-shadow: 8px ">Nilai</a></td>
+                                <td><a href="document.php?Url=<?php echo 'Document/'. $r2['file'];?>" class="btn btn-warning" title="View File"style="box-shadow: 8px ">View</a></td>
+                              
+                    
+                            </tr>
+                        <?php
+                        }
+                        ?>
+                    </tbody>
+                    
+                </table>
+            </div>
+        </div>
+    </div>
+          
+    <!-- END MAIN CONTENT -->
 
-                                </div>
-                                <div class="pd-1r">
-                                    <div class="divider"></div>
-                                </div>
+    <div class="overlay"></div>
 
-                                <div class="box-body">
-                                    <ul class="list">
-                                        <li class="d-flex no-seen">
-                                            <div class="img-mess"><img class="mr-14" src="./images/avatar/avt-1.png" alt="avt"></div>
-                                            <div class="info">
-                                                <a href="#" class="font-w600 mb-0 color-primary">Elizabeth Holland</a>
-                                                <p class="pb-0 mb-0 line-h14 mt-6">Proin ac quam et lectus vestibulum</p>
-                                            </div>
-                                        </li>
+    <!-- SCRIPT -->
+    <!-- APEX CHART -->
 
-                                        <li class="d-flex">
-                                            <div class="img-mess"><img class="mr-14" src="./images/avatar/avt-1.png" alt="avt"></div>
-                                            <div class="info">
-                                                <a href="#" class="font-w600 mb-0 color-primary">Elizabeth Holland</a>
-                                                <p class="pb-0 mb-0 line-h14 mt-6">Proin ac quam et lectus vestibulum</p>
-                                            </div>
-                                        </li>
+    <script src="./libs/jquery/jquery.min.js"></script>
+    <script src="./libs/jquery/jquery-ui.min.js"></script>
+    <script src="./libs/moment/min/moment.min.js"></script>
+    <script src="./libs/apexcharts/apexcharts.js"></script>
+    <script src="./libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="./libs/peity/jquery.peity.min.js"></script>
+    <script src="./libs/chart.js/Chart.bundle.min.js"></script>
+    <script src="./libs/owl.carousel/owl.carousel.min.js"></script>
+    <script src="./libs/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./libs/simplebar/simplebar.min.js"></script>
 
-                                    </ul>
-                                    <div class="btn-view">
-                                        <a class="font-w600 h5" href="message.html">View All</a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-
-
-
-                        <div class="overlay"></div>
-
-                        <!-- SCRIPT -->
-                        <!-- APEX CHART -->
-
-                        <script src="./libs/jquery/jquery.min.js"></script>
-                        <script src="./libs/moment/min/moment.min.js"></script>
-                        <script src="./libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-                        <script src="./libs/peity/jquery.peity.min.js"></script>
-                        <script src="./libs/chart.js/Chart.bundle.min.js"></script>
-                        <script src="./libs/owl.carousel/owl.carousel.min.js"></script>
-                        <script src="./libs/bootstrap/js/bootstrap.min.js"></script>
-                        <script src="./libs/apexcharts/apexcharts.js"></script>
-                        <script src="./libs/simplebar/simplebar.min.js"></script>
-
-                        <!-- APP JS -->
-                        <script src="./js/main.js"></script>
-                        <script src="./js/dashboard.js"></script>
-                        <script src="./js/shortcode.js"></script>
-                        <script src="./js/pages/dashboard.js"></script>
-
-
+    <!-- APP JS -->
+    <script src="./js/main.js"></script>
+    <script src="./js/shortcode.js"></script>
+    <script src="./js/script.js"></script>
 </body>
 
 </html>

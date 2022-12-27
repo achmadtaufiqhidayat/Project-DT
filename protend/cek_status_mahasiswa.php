@@ -1,21 +1,6 @@
 <?php
 // mengaktifkan session php
 session_start();
-
-function Status($id_status)
-{
-    if($id_status == 1 ){
-        $hasil = 'Diterima';
-    } else if($id_status == 2 ) {
-        $hasil = 'Diterima dengan Revisi';
-    } else if ($id_status == 3) {
-        $hasil = 'Ditolak';
-    }
-    else if ($id_status == 0){
-        $hasil = 'Menunggu konfirmasi';
-    }
-    return $hasil;
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,6 +25,7 @@ function Status($id_status)
     <link rel="stylesheet" href="./css/grid.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/responsive.css">
+    <link rel="stylesheet" href="./css/custom.css">
 </head>
 
 <body class="sidebar-expand">
@@ -67,15 +53,37 @@ function Status($id_status)
                         </div>
                     </a>
                     <ul class="sidebar-menu sidebar-menu-dropdown-content">
+                    <?php
+                        include 'koneksi.php';
+                        $username = $_SESSION['username'];
+                        $sql   = "select * from mahasiswa where username = '$username' ";
+                        $q     = mysqli_query($koneksi, $sql);
+                        while ($r = mysqli_fetch_array($q)) {
+                        $id_matkul2         = $r['id_matkul'];
+}
+                        
+                        $sql2   = "select * from mata_kuliah WHERE id_matkul = $id_matkul2";
+                        $q2     = mysqli_query($koneksi, $sql2);
+                        $rowcount=mysqli_num_rows($q2);
+                        $urut   = 1;
+                        if($rowcount > 0){ 
+                            $ada = true;
+                        }
+                            else
+                        { 
+                            $ada = false;
+                        }
+                        ?>
                     <li>
-                            <a href="penilaian.php">
-                                Penilaian Skripsi
+                            <a class=<?php echo ($ada == true) ? 'disable-links' : 'clear'; ?> href="input_nilai.php">
+                                Input data
                             </a>
                         </li>
                         <li>
-                            <a href="data_mahasiswa.php">
-                                Data mahasiswa
+                            <a href="cek_status_mahasiswa.php">
+                                Cek status
                             </a>
+                        </li>
                         </li>
                     </ul>
                 </li>
@@ -87,19 +95,14 @@ function Status($id_status)
                     </a>
                     <ul class="sidebar-menu sidebar-menu-dropdown-content active">
                     <li>
-                            <a href="profile.php">
+                            <a href="profile_mahasiswa.php">
                                 profile
                             </a>
 
                         </li>
-                        <li>
-                            <a href="register.php">
-                                Register
-                            </a>
-                        </li>
                       
                         <li>
-                            <a href="Logout_dosen.php">
+                            <a href="Logout_mahasiswa.php">
                                 Logout
                             </a>
                         </li>
@@ -208,7 +211,6 @@ function Status($id_status)
                         <span class="info d-xl-inline-block  color-span">
                         <span class="d-block fs-20 font-w600"><b><?php echo $_SESSION['username']; ?><??></b></span>
                          
-                     
                         </span>
                             
                         <i class='bx bx-chevron-down'></i>
@@ -220,7 +222,7 @@ function Status($id_status)
                     <a class="dropdown-item d-block" href="#"><span class="badge bg-success float-end">11</span><i class="bx bx-wrench font-size-16 align-middle me-1"></i> <span>Settings</span></a>
                     <a class="dropdown-item" href="#"><i class="bx bx-lock-open font-size-16 align-middle me-1"></i> <span>Lock screen</span></a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger" href="Logout_dosen.php"><i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> <span>Logout</span></a>
+                    <a class="dropdown-item text-danger" href="user-login.html"><i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> <span>Logout</span></a>
                 </div>
             </div>
         </div>
@@ -239,7 +241,6 @@ function Status($id_status)
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Nama</th>
                             <th scope="col">logika algoritma</th>
                             <th scope="col">matematika Diskrit</th>
                             <th scope="col">wokshop tertanam</th>
@@ -255,13 +256,18 @@ function Status($id_status)
                     <tbody>
                         <?php
                         include 'koneksi.php';
-                        $sql2   = "SELECT * FROM mata_kuliah INNER JOIN mahasiswa ON mahasiswa.id_matkul = mata_kuliah.id_matkul";
+                        $username = $_SESSION['username'];
+                        $sql   = "select * from mahasiswa where username = '$username' ";
+                        $q     = mysqli_query($koneksi, $sql);
+                        while ($r = mysqli_fetch_array($q)) {
+                        $id_matkul2         = $r['id_matkul'];
+}
+                        
+                        $sql2   = "select * from mata_kuliah WHERE id_matkul = $id_matkul2";
                         $q2     = mysqli_query($koneksi, $sql2);
                         $urut   = 1;
                         while ($r2 = mysqli_fetch_array($q2)) {
-                            
                             $id_matkul         = $r2['id_matkul'];
-                            $nama         = $r2['nama'];
                             $logika_algoritma        = $r2['logika_algoritma'];
                             $matematika_Diskrit       = $r2['matematika_Diskrit'];
                             $wk_sistemtertanam     = $r2['wk_sistemtertanam'];
@@ -269,13 +275,11 @@ function Status($id_status)
                             $sistem_cerdas     = $r2['sistem_cerdas'];
                             $wk_sistem_cerdas  = $r2['wk_sistem_cerdas'];
                             $file     = $r2['file'];
-                            $id_status     = $r2['id_status'];
-                            $id_mahasiswa = $r2['id_mahasiswa']
+                         
 
                         ?>
                             <tr>
                                 <th scope="row"><?php echo $urut++ ?></th>
-                                <td scope="row"><?php echo $nama ?></td>
                                 <td scope="row"><?php echo $logika_algoritma ?></td>
                                 <td scope="row"><?php echo $matematika_Diskrit ?></td>
                                 <td scope="row"><?php echo $wk_sistemtertanam ?></td>
@@ -283,10 +287,10 @@ function Status($id_status)
                                 <td scope="row"><?php echo $sistem_cerdas ?></td>
                                 <td scope="row"><?php echo $wk_sistem_cerdas ?></td>
                                 <td scope="row"><?php echo $file ?></td>
-                                <td scope="row"><?php echo Status($id_status) ?></td>
+                                <td scope="row">Diterima</td>
 
-                                <td><a href="dosen_nilai.php?id_mahasiswa=<?= $r2['id_mahasiswa']?>" class="btn btn-success" title="View File"style="box-shadow: 8px ">Nilai</a></td>
-                                <td><a href="document_view.php?id_file=,?php echo$sb['id_file']?>" class="btn btn-warning" title="View File"style="box-shadow: 8px ">View</a></td>
+                                <td><a href="document_view.php?id_file=,?php echo$sb['id_file']?>" class="btn btn-warning" title="Ubah"style="box-shadow: 8px ">Ubah</a></td>
+                                <td><a href="document.php?Url=<?php echo 'Document/'. $r2['file'];?>" class="btn btn-warning" title="View File"style="box-shadow: 8px ">View</a></td>
                               
                     
                             </tr>

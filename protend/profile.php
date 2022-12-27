@@ -85,19 +85,14 @@
                     </a>
                     <ul class="sidebar-menu sidebar-menu-dropdown-content">
                     <li>
-                            <a href="profile.php">
+                            <a href="profile_mahasiswa.php">
                                 profile
                             </a>
 
                         </li>
-                        <li>
-                            <a href="register.php">
-                                Register
-                            </a>
-                        </li>
                       
                         <li>
-                            <a href="Logout.php">
+                            <a href="Logout_mahasiswa.php">
                                 Logout
                             </a>
                         </li>

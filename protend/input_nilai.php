@@ -70,7 +70,7 @@ session_start();
                             </a>
                         </li>
                         <li>
-                            <a href="cek_status.php">
+                            <a href="cek_status_mahasiswa.php">
                                 Cek status
                             </a>
                         </li>
