@@ -60,7 +60,7 @@ session_start();
                         $q     = mysqli_query($koneksi, $sql);
                         while ($r = mysqli_fetch_array($q)) {
                         $id_matkul2         = $r['id_matkul'];
-}
+                    }
                         
                         $sql2   = "select * from mata_kuliah WHERE id_matkul = $id_matkul2";
                         $q2     = mysqli_query($koneksi, $sql2);

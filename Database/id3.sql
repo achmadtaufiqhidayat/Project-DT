@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 25, 2022 at 11:30 AM
+-- Generation Time: Dec 27, 2022 at 09:27 AM
 -- Server version: 5.7.33
 -- PHP Version: 8.0.15
 
@@ -80,7 +80,7 @@ INSERT INTO `mahasiswa` (`id_mahasiswa`, `id_matkul`, `nama`, `username`, `passw
 (7, 32, 'naufal', 'Naufal123', 'Naufal123', 'mahasiswa'),
 (8, 33, 'widha', 'widha123', 'widha123', 'mahasiswa'),
 (9, 34, 'hani', 'Hani123', 'Hani123', 'mahasiswa'),
-(10, NULL, 'luki', 'Luki123', 'Luki123', 'mahasiswa');
+(10, 35, 'luki', 'Luki123', 'Luki123', 'mahasiswa');
 
 -- --------------------------------------------------------
 
@@ -108,11 +108,12 @@ CREATE TABLE `mata_kuliah` (
 
 INSERT INTO `mata_kuliah` (`id_matkul`, `logika_algoritma`, `matematika_Diskrit`, `wk_sistemtertanam`, `wk_pcv`, `sistem_cerdas`, `wk_sistem_cerdas`, `name`, `file`, `id_status`, `id_nilai_skripsi`) VALUES
 (28, 2.3, 1.5, 2, 1, 2, 2, 'Skripsi.pdf', 'hiya hiiya', 3, 3),
-(30, 1, 1, 1, 1, 1, 1, 'file keren', 'Konsep dasar mikrokomputer.pdf', 0, 2),
-(31, 1, 1, 1, 1, 1, 1, 'fdgdg', 'DATA STAN SEMESTER 4  PAMERAN TIF 2022.pdf', 0, 0),
-(32, 1, 2, 2, 2, 1, 1, 'File keren sekali', 'UNDANGAN PURNA.pdf', 0, 0),
+(30, 1, 1, 1, 1, 1, 1, 'file keren', 'Konsep dasar mikrokomputer.pdf', 3, 1),
+(31, 1, 1, 1, 1, 1, 1, 'fdgdg', 'DATA STAN SEMESTER 4  PAMERAN TIF 2022.pdf', 3, 3),
+(32, 3, 3, 3.5, 3.5, 2.5, 2.5, 'File keren sekali', 'UNDANGAN PURNA.pdf', 2, 2),
 (33, 2, 2, 1, 1, 1, 2, 'skripsi keren', 'Rundown Kegiatan Adopsi Kegiatan MF.pdf', 0, 0),
-(34, 2, 1, 1, 1, 1, 1, 'ssdfsdfs', 'UNDANGAN PURNA.pdf', 0, 0);
+(34, 2, 1, 1, 1, 1, 1, 'ssdfsdfs', 'UNDANGAN PURNA.pdf', 0, 0),
+(35, 3.5, 3.6, 3.2, 3.8, 3.8, 3.5, 'Skripsi keren 2', '', 1, 2);
 
 -- --------------------------------------------------------
 

@@ -289,7 +289,7 @@ session_start();
                                 <td scope="row"><?php echo $file ?></td>
                                 <td scope="row">Diterima</td>
 
-                                <td><a href="document_view.php?id_file=,?php echo$sb['id_file']?>" class="btn btn-warning" title="Ubah"style="box-shadow: 8px ">Ubah</a></td>
+                                <td><a href="ubah_nilai_mahasiswa.php?id_matkul=<?= $r2['id_matkul']?>" class="btn btn-warning" title="Ubah"style="box-shadow: 8px ">Ubah</a></td>
                                 <td><a href="document.php?Url=<?php echo 'Document/'. $r2['file'];?>" class="btn btn-warning" title="View File"style="box-shadow: 8px ">View</a></td>
                               
                     

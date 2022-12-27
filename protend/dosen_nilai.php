@@ -396,7 +396,7 @@ while ($r2 = mysqli_fetch_array($q2)) {
                                 <div class="col-md-6 col-sm-12 mb-24">
                                     <div class="form-group"> 
                                         <!-- <label class="form-label">Price ( $ )</label>  -->
-                                        <input class="form-control"    disabled name="matematika_diskrit" value='<?= $matematika_Diskrit?>' placeholder="Nilai"> </div>
+                                        <input class="form-control"    disabled name="matematika_diskrit" value='<?=  $matematika_Diskrit?>' placeholder="Nilai"> </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -469,7 +469,7 @@ while ($r2 = mysqli_fetch_array($q2)) {
                                 <div class="col-md-6 col-sm-12 mb-24">
                                     <div class="form-group"> 
                                         <!-- <label class="form-label">Price ( $ )</label>  -->
-                                        <input class="form-control"  disabled name="wk_pcv" value='<?= $wk_pcv?>' placeholder="Nilai"> </div>
+                                        <input class="form-control"  disabled name="wk_pcv" value='<?=  $wk_pcv?>' placeholder="Nilai"> </div>
                                 </div>
                             </div>   
                             <div class="row">
@@ -565,34 +565,114 @@ while ($r2 = mysqli_fetch_array($q2)) {
                                 <div class="submit-section">
                                     <button class="btn btn-primary submit-btn" type="submit" name="save">Save</button>
                                 </div>
-
                                 <?php
+                                    $inti = ($wk_sistem_cerdas + $sistem_cerdas)/2;
+                                    $pendukung = ($wk_sistemtertanam+$wk_pcv)/2;
+                                    $dasar = ($logika_algoritma+$matematika_Diskrit)/2;
 
-                                if (isset($_POST['id_nilai_skripsi'])) {
-                                    $id_nilai_skripsi = $_POST['id_nilai_skripsi'];
-                                    $query = "UPDATE mata_kuliah SET id_nilai_skripsi = $id_nilai_skripsi WHERE id_matkul = $id_matkul";
-                                    $query_run = mysqli_query($koneksi, $query);
-
-
-                                    if ($query_run) {
-                                        echo '<script type="text/javascript">alert("Nilai Berhasil Diubah")
-                                             window.location.href = "penilaian.php"      
-                                        </script>';
-
-
-                                    } else {
-
-                                        echo '<script type="text/javascript">alert("Nilai Gagal Diubah")</script>';
-
-                                    }
-                                }
+                                    print('inti = '.$inti);
+                                    print(' pendukung = '.$pendukung);
+                                    print(' dasar = '.$dasar);
                                 ?>
+                                
                             </form>
+                            <?php
+                            if (isset($_POST['id_nilai_skripsi'])) {
+                                $id_nilai_skripsi = $_POST['id_nilai_skripsi'];
+
+                                $inti = ($wk_sistem_cerdas + $sistem_cerdas)/2;
+                                $pendukung = ($wk_sistemtertanam+$wk_pcv)/2;
+                                $dasar = ($logika_algoritma+$matematika_Diskrit)/2;
+
+                                if($id_nilai_skripsi == 3){
+                                    $id_status_akhir = 3;
+                                }
+                                else if ($id_nilai_skripsi == 2){
+                                    if($inti >= 2.0 && $inti <= 2.9){
+                                        if($pendukung >= 2.0 && $pendukung <= 2.9){
+                                            $id_status_akhir = 3;
+                                        } else if($pendukung >= 3.0 && $pendukung <= 4.0){
+                                            if($dasar >= 3.0 && $dasar <= 4.0){
+                                                $id_status_akhir = 2;
+                                            }
+
+                                        }
+
+                                    } else if ($inti >= 3.0 && $inti <= 4.0) {
+                                        if($pendukung >= 2.0 && $pendukung <= 2.9){
+                                            $id_status_akhir = 2;
+                                        }else if ($pendukung >= 3.0 && $pendukung <= 4.0) {
+                                            if($dasar >= 3.0 && $dasar <= 4.0){
+                                                $id_status_akhir = 1;
+                                            }
+                                        }
+                                    }
+
+                                } 
+                                else if ($id_nilai_skripsi == 1){
+                                    if($inti < 2.0) {
+                                        if($pendukung >= 3.0 && $pendukung <= 4.0){
+                                            $id_status_akhir = 2;
+                                        }
+                                    }
+                                    else if($inti >= 2.0 && $inti <= 2.9) {
+                                        if($pendukung < 2.0){
+                                            $id_status_akhir = 3;
+                                        } else if($pendukung >= 2.0 && $pendukung <= 2.9) {
+                                            if($dasar >= 2.0 && $dasar <= 2.9){
+                                                $id_status_akhir = 3;
+                                            } else if($dasar >= 3.0 && $dasar <= 4.0){
+                                                $id_status_akhir = 2;
+                                            }
+                                        } else if($pendukung >= 3.0 && $pendukung <= 4.0){
+                                            if($dasar >= 2.0 && $dasar <= 2.9){
+                                                $id_status_akhir = 2;
+                                            } else if($dasar >= 3.0 && $dasar <= 4.0){
+                                                $id_status_akhir = 1;
+                                            }
+                                        }
+                                    }
+                                    else if($inti >= 3.0 && $inti <= 4.0) {
+                                        if($pendukung < 2.0){
+                                            if($dasar >= 3.0 && $dasar <= 4.0){
+                                                $id_status_akhir = 1;
+                                            } else if($dasar >= 2.0 && $dasar <= 2.9){
+                                                $id_status_akhir = 2;
+                                            }
+
+                                        } else if($pendukung >= 2.0 && $pendukung <= 2.9) {
+                                            $id_status_akhir = 1;
+                                        } else if($pendukung >= 3.0 && $pendukung <= 4.0){
+                                            $id_status_akhir = 1;
+                                        }
+                                    }
+                                    
+                                }
+                                $query_akhir = "UPDATE mata_kuliah SET id_status = $id_status_akhir WHERE id_matkul = $id_matkul";
+                                mysqli_query($koneksi, $query_akhir);
+
+
+                                $query = "UPDATE mata_kuliah SET id_nilai_skripsi = $id_nilai_skripsi WHERE id_matkul = $id_matkul";
+                                $query_run = mysqli_query($koneksi, $query);
+
+
+                                if ($query_run) {
+                                    echo '<script type="text/javascript">alert("Nilai Berhasil Diubah")
+                                        window.location.href = "penilaian.php"      
+                                    </script>';
+
+
+                                } else {
+
+                                    echo '<script type="text/javascript">alert("Nilai Gagal Diubah")</script>';
+
+                                }
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
             </div>
-
 
         </div>
     </div>

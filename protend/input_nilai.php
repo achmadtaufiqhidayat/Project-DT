@@ -26,17 +26,10 @@ session_start();
     <link rel="stylesheet" href="./css/grid.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/responsive.css">
+    <link rel="stylesheet" href="./css/custom.css">
 </head>
 
 <body class="sidebar-expand counter-scroll">
-            
-<?
-    if(isset($_SESSION['status']))
-        {
-            echo "<H4>".$_SESSION['status']."</h4>";
-            unset($_SESSION['status']);
-        }
-        ?>
 
     <!-- SIDEBAR -->
     <div class="sidebar">
@@ -63,14 +56,13 @@ session_start();
                         </div>
                     </a>
                     <ul class="sidebar-menu sidebar-menu-dropdown-content">
-                        
                         <li>
                             <a href="input_nilai.php">
                                 Input data
                             </a>
                         </li>
                         <li>
-                            <a href="cek_status_mahasiswa.php">
+                            <a href="cek_status.php">
                                 Cek status
                             </a>
                         </li>
@@ -358,7 +350,7 @@ session_start();
                                     
                                 <div class="col-md-6 col-sm-12 mb-24">
                                     <div class="form-group"> <label class="form-label">Nilai</label> 
-                                    <input name="logika_algoritma" class="form-control" maxlength="4" onkeyup="oneDot(this)" placeholder="Tulis nilai anda"> </div>
+                                    <input name="logika_algoritma" class="form-control" maxlength="2" onkeyup="oneDot(this)" placeholder="Tulis nilai anda"> </div>
                                 </div>
 
 
@@ -395,7 +387,7 @@ session_start();
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-12 mb-24">
-                                    <input name="Matematika_Diskrit" class="form-control" maxlength="4" onkeyup="oneDot(this)" placeholder="Tulis nilai anda"> </div>
+                                    <input name="Matematika_Diskrit" class="form-control" maxlength="2" onkeyup="oneDot(this)" placeholder="Tulis nilai anda"> </div>
                                 </div>
 
                             <div class="row">
@@ -435,7 +427,7 @@ session_start();
                                
                                 <div class="col-md-6 col-sm-12 mb-24">
                                     <div class="form-group"> <label class="form-label">Nilai</label> 
-                                    <input name="wk_SistemTertanam" class="form-control" maxlength="4" onkeyup="oneDot(this)" placeholder="Tulis nilai anda"> </div>
+                                    <input name="wk_SistemTertanam" class="form-control" maxlength="2" onkeyup="oneDot(this)" placeholder="Tulis nilai anda"> </div>
                                 </div>
                                 <div class="col-md-6 col-sm-12 mb-24">
                                     <div class="form-group"> 
@@ -469,7 +461,7 @@ session_start();
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-12 mb-24">
-                                    <input name="Wk_pcv" class="form-control" maxlength="4" onkeyup="oneDot(this)" placeholder="Tulis nilai anda"> </div>
+                                    <input name="Wk_pcv" class="form-control" maxlength="2" onkeyup="oneDot(this)" placeholder="Tulis nilai anda"> </div>
                                 </div>
                             </div>   
                             <div class="row">
@@ -504,7 +496,7 @@ session_start();
                                 </div>
                                 <div class="col-md-6 col-sm-12 mb-24">
                                     <div class="form-group"> <label class="form-label">Nilai</label> 
-                                    <input name="sistem_cerdas" class="form-control" maxlength="4" onkeyup="oneDot(this)" placeholder="Tulis nilai anda"> </div>
+                                    <input name="sistem_cerdas" class="form-control" maxlength="2" onkeyup="oneDot(this)" placeholder="Tulis nilai anda"> </div>
                                 </div>
                                 
                                 <div class="col-md-6 col-sm-12 mb-24">
@@ -539,13 +531,13 @@ session_start();
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-12 mb-24">
-                                    <input name="wk_sistem_cerdas" class="form-control" maxlength="4" onkeyup="oneDot(this)" placeholder="Tulis nilai anda"> </div>
+                                    <input name="wk_sistem_cerdas" class="form-control" maxlength="2" onkeyup="oneDot(this)" placeholder="Tulis nilai anda"> </div>
                                 </div>
                             </div>   
 
                                 <div class="form-group">
                                     <label>Upload File Skripsi</label>
-                                    <input type="text" class="form-control" name="name"placeholder="Enter your name" required>
+                                    <input type="text" class="form-control" name="name"placeholder="Enter your file name" required>
                                     <input class="form-control" type="file" name="file">
                                 </div>
                                 <div class="submit-section">
@@ -570,8 +562,8 @@ session_start();
             var value = input.value,
             value = value.split('.').join('');
 
-        if (value.length > 2) {
-        value = value.substring(0, value.length - 2) + '.' + value.substring(value.length - 2, value.length);
+        if (value.length > 1) {
+        value = value.substring(0, value.length - 1) + '.' + value.substring(value.length - 1, value.length);
         }
 
         input.value = value;
