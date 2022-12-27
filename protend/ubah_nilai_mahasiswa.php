@@ -611,12 +611,15 @@ if (isset($_POST['ubah'])) {
     $sistem_cerdas = $_POST['sistem_cerdas'];
     $wk_sistem_cerdas = $_POST['wk_sistem_cerdas'];
     $name = $_POST['name'];
-    $file_name = $file_lama;
     $username = $_SESSION['username'];
     if (isset($_FILES['file']['name'])) {
         $file_name = $_FILES['file']['name'];
         $file_tmp = $_FILES['file']['tmp_name'];
         move_uploaded_file($file_tmp, "./Document/" . $file_name);
+
+        if($_FILES['file']['name'] == NULL){
+            $file_name = $file_lama;
+        }
 
         $query = "UPDATE mata_kuliah SET logika_algoritma = $logika_algoritma, matematika_Diskrit = $Matematika_Diskrit, wk_sistemtertanam = $wk_SistemTertanam, wk_pcv = $Wk_pcv, sistem_cerdas = $sistem_cerdas, 
                     wk_sistem_cerdas = $wk_sistem_cerdas, name = '$name', file = '$file_name' WHERE id_matkul = $id_matkul";

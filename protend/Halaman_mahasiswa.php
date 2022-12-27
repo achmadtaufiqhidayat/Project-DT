@@ -31,6 +31,7 @@ if ($_SESSION['level'] == "") {
     <link rel="stylesheet" href="./css/grid.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/responsive.css">
+    <link rel="stylesheet" href="./css/custom.css">
 </head>
 
 <body class="sidebar-expand">
@@ -58,13 +59,30 @@ if ($_SESSION['level'] == "") {
                         </div>
                     </a>
                     <ul class="sidebar-menu sidebar-menu-dropdown-content">
+                    <?php
+                        include 'koneksi.php';
+                        $username = $_SESSION['username'];
+                        $sql   = "select * from mahasiswa where username = '$username' ";
+                        $q     = mysqli_query($koneksi, $sql);
+                        while ($r = mysqli_fetch_array($q)) {
+                        $id_matkul2         = $r['id_matkul'];
+                        }
+                        
+                        if(is_numeric($id_matkul2)){ 
+                            $ada = true;
+                        }
+                            else
+                        { 
+                            $ada = false;
+                        }
+                        ?>
                         <li>
                             <a href="input_nilai.php">
                                 Input data
                             </a>
                         </li>
                         <li>
-                            <a href="cek_status_mahasiswa.php">
+                            <a class=<?php echo ($ada == false) ? 'disable-links' : 'clear'; ?> href="cek_status_mahasiswa.php">
                                 Cek status
                             </a>
                         </li>
@@ -148,40 +166,6 @@ if ($_SESSION['level'] == "") {
                 </div>
             </div>
 
-            <div class="dropdown d-inline-block">
-                <button type="button" class="btn header-item" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="btn dropdown-toggle" id="header-lang-img">
-                        EN
-                        <i class='bx bx-caret-down'></i>
-                    </span>
-                </button>
-                <div class="dropdown-menu dropdown-menu-end">
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="en">
-                        <img src="./images/flags/us.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">English</span>
-                    </a>
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="sp">
-                        <img src="./images/flags/spain.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Spanish</span>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="gr">
-                        <img src="./images/flags/germany.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">German</span>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="it">
-                        <img src="./images/flags/italy.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Italian</span>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="ru">
-                        <img src="./images/flags/russia.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Russian</span>
-                    </a>
-                </div>
-            </div>
             <!-- <div class="dropdown d-none d-lg-inline-block ms-1">
                 <button type="button" class="btn header-item noti-icon waves-effect" data-toggle="fullscreen">
                         <i class="bx bx-fullscreen"></i>
@@ -192,8 +176,7 @@ if ($_SESSION['level'] == "") {
                     <img class="rounded-circle header-profile-user" src="./images/profile/profile.png" alt="Header Avatar">
                     <span class="pulse-css"></span>
                     <span class="info d-xl-inline-block  color-span">
-                        <span class="d-block fs-20 font-w600">Randy Riley</span>
-                        <span class="d-block mt-7">randy.riley@gmail.com</span>
+                        <span class="d-block fs-20 font-w600"><?=$_SESSION['username'];?></span>
                     </span>
 
                     <i class='bx bx-chevron-down'></i>

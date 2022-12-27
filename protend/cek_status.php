@@ -1,6 +1,22 @@
 <?php
 // mengaktifkan session php
 session_start();
+
+function Status($id_status)
+{
+    if($id_status == 1 ){
+        $hasil = 'Diterima';
+    } else if($id_status == 2 ) {
+        $hasil = 'Diterima dengan Revisi';
+    } else if ($id_status == 3) {
+        $hasil = 'Ditolak';
+    }
+    else if ($id_status == 0){
+        $hasil = 'Menunggu konfirmasi';
+    }
+    return $hasil;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,7 +76,7 @@ session_start();
                         $q     = mysqli_query($koneksi, $sql);
                         while ($r = mysqli_fetch_array($q)) {
                         $id_matkul2         = $r['id_matkul'];
-}
+                    }
                         
                         $sql2   = "select * from mata_kuliah WHERE id_matkul = $id_matkul2";
                         $q2     = mysqli_query($koneksi, $sql2);
@@ -274,6 +290,7 @@ session_start();
                             $wk_pcv   = $r2['wk_pcv'];
                             $sistem_cerdas     = $r2['sistem_cerdas'];
                             $wk_sistem_cerdas  = $r2['wk_sistem_cerdas'];
+                            $id_status     = $r2['id_status'];
                             $file     = $r2['file'];
                          
 
@@ -287,7 +304,7 @@ session_start();
                                 <td scope="row"><?php echo $sistem_cerdas ?></td>
                                 <td scope="row"><?php echo $wk_sistem_cerdas ?></td>
                                 <td scope="row"><?php echo $file ?></td>
-                                <td scope="row">Diterima</td>
+                                <td scope="row"><?php echo Status($id_status) ?></td>
 
                                 <td><a href="ubah_nilai_mahasiswa.php?id_matkul=<?= $r2['id_matkul']?>" class="btn btn-warning" title="Ubah"style="box-shadow: 8px ">Ubah</a></td>
                                 <td><a href="document.php?Url=<?php echo 'Document/'. $r2['file'];?>" class="btn btn-warning" title="View File"style="box-shadow: 8px ">View</a></td>

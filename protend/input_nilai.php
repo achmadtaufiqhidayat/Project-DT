@@ -56,13 +56,30 @@ session_start();
                         </div>
                     </a>
                     <ul class="sidebar-menu sidebar-menu-dropdown-content">
+                    <?php
+                        include 'koneksi.php';
+                        $username = $_SESSION['username'];
+                        $sql   = "select * from mahasiswa where username = '$username' ";
+                        $q     = mysqli_query($koneksi, $sql);
+                        while ($r = mysqli_fetch_array($q)) {
+                        $id_matkul2         = $r['id_matkul'];
+                        }
+                        
+                        if(is_numeric($id_matkul2)){ 
+                            $ada = true;
+                        }
+                            else
+                        { 
+                            $ada = false;
+                        }
+                    ?>
                         <li>
                             <a href="input_nilai.php">
                                 Input data
                             </a>
                         </li>
                         <li>
-                            <a href="cek_status.php">
+                            <a class=<?php echo ($ada == false) ? 'disable-links' : 'clear'; ?> href="cek_status.php">
                                 Cek status
                             </a>
                         </li>
